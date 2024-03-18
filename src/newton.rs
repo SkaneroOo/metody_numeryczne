@@ -1,8 +1,8 @@
 #![allow(dead_code)]
 #[allow(unused_imports)]
 use super::utilities;
+use std::fmt;
 
-#[derive(Debug)]
 struct NewtonInterpolation {
     xs: Vec<f64>,
     layers: Vec<Vec<f64>>
@@ -65,6 +65,19 @@ impl NewtonInterpolation {
     }
 }
 
+impl fmt::Debug for NewtonInterpolation {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        writeln!(f, "NewtonInterpolation {{")?;
+        writeln!(f, "    xs: {:?}, ", self.xs)?;
+        writeln!(f, "    layers: [")?;
+        for i in 0..self.layers.len() {
+            writeln!(f, "        {:?}, ", self.layers[i])?;
+        }
+        writeln!(f, "    ]")?;
+        writeln!(f, "}}")
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -76,7 +89,9 @@ mod tests {
         let mut newton = NewtonInterpolation::new(&xs, &ys);
         println!("{:#?}", newton);
         let result = newton.calculate(x);
-        assert_eq!(result, 44.0);
+        let expected = 44.0;
+        println!("result: {}, expected: {}", result, expected);
+        assert_eq!(result, expected);
     }
 
     #[test]
@@ -88,6 +103,46 @@ mod tests {
         newton.add(nx, ny);
         println!("{:#?}", newton);
         let result = newton.calculate(x);
-        assert_eq!(result, 44.0);
+        let expected = 44.0;
+        println!("result: {}, expected: {}", result, expected);
+        assert_eq!(result, expected);
+    }
+
+    #[test]
+    fn test_newton3() {
+        let (mut xs, mut ys, x) = parse_file("data/test_newton.txt");
+        let nx = xs.remove(0);
+        let ny = ys.remove(0);
+        let mut newton = NewtonInterpolation::new(&xs, &ys);
+        newton.add(nx, ny);
+        println!("{:#?}", newton);
+        let result = newton.calculate(x);
+        let expected = 44.0;
+        println!("result: {}, expected: {}", result, expected);
+        assert_eq!(result, expected);
+    }
+
+    #[test]
+    fn test_newton4() {
+        let (xs, ys, x) = parse_file("data/test_newton.txt");
+        let mut newton = NewtonInterpolation::new(&xs, &ys);
+        println!("{:#?}", newton);
+        let x = xs[2];
+        let result = newton.calculate(x);
+        let expected = ys[2];
+        println!("result: {}, expected: {}", result, expected);
+        assert_eq!(result, expected);
+    }
+
+    #[test]
+    fn test_newton5() {
+        let (xs, ys, x) = parse_file("data/test_newton.txt");
+        let mut newton = NewtonInterpolation::new(&xs, &ys);
+        println!("{:#?}", newton);
+        let x = xs[3];
+        let result = newton.calculate(x);
+        let expected = ys[3];
+        println!("result: {}, expected: {}", result, expected);
+        assert_eq!(result, expected);
     }
 }
