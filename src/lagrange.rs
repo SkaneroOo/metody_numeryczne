@@ -1,7 +1,7 @@
+#![allow(dead_code)]
 #[allow(unused_imports)]
 use super::utilities;
 
-#[allow(dead_code)]
 pub fn lagrange_interpolation(x: f64, xs: &[f64], ys: &[f64]) -> f64 {
     let mut sum = 0.0;
 
