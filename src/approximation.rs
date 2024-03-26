@@ -2,11 +2,11 @@
 #[allow(unused_imports)]
 use super::utilities;
 
+type A0 = f64;
 type A1 = f64;
-type A2 = f64;
 type R = f64;
 
-pub fn approximation(xs: &[f64], ys: &[f64]) -> (A1, A2, R) {
+pub fn approximation(xs: &[f64], ys: &[f64]) -> (A0, A1, R) {
     assert!(xs.len() == ys.len());
     let n = xs.len();
 
