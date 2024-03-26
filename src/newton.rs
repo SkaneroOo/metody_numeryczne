@@ -3,7 +3,7 @@
 use super::utilities;
 use std::fmt;
 
-struct NewtonInterpolation {
+pub struct NewtonInterpolation {
     xs: Vec<f64>,
     layers: Vec<Vec<f64>>
 }
