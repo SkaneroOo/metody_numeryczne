@@ -124,7 +124,7 @@ mod tests {
 
     #[test]
     fn test_newton4() {
-        let (xs, ys, x) = parse_file("data/test_newton.txt");
+        let (xs, ys, _) = parse_file("data/test_newton.txt");
         let mut newton = NewtonInterpolation::new(&xs, &ys);
         println!("{:#?}", newton);
         let x = xs[2];
@@ -136,7 +136,7 @@ mod tests {
 
     #[test]
     fn test_newton5() {
-        let (xs, ys, x) = parse_file("data/test_newton.txt");
+        let (xs, ys, _) = parse_file("data/test_newton.txt");
         let mut newton = NewtonInterpolation::new(&xs, &ys);
         println!("{:#?}", newton);
         let x = xs[3];
