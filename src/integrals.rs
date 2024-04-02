@@ -19,9 +19,12 @@ pub fn trapezoid_method<F>(f: F, x1: f64, x2: f64, step: f64) -> f64
 where F: Fn(f64) -> f64 {
     let mut x = x1;
     let mut res = 0.0;
+    let mut previous = f(x);
     while x < x2 {
-        res += (f(x) + f(x + step)) * step / 2.0;
         x += step;
+        let current = f(x);
+        res += (previous + current) * step / 2.0;
+        previous = current;
     }
     res
 }
