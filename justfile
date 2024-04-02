@@ -1,3 +1,5 @@
+set windows-shell := ["nu", "-c"]
+
 default:
     @cargo build
 
@@ -6,3 +8,11 @@ test *targets:
 
 qtest *targets:
     @cargo test {{targets}} --lib
+
+push:
+    @git add .
+    @git commit -m .
+    @git push origin master
+
+pull:
+    @git pull origin master

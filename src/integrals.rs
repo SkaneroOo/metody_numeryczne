@@ -4,15 +4,15 @@ use rand::Rng;
 #[allow(unused_imports)]
 use super::utilities;
 
-pub fn square_method<F>(f: F, x1: f64, x2: f64, step: f64) -> f64 
+pub fn rectangle_method<F>(f: F, x1: f64, x2: f64, step: f64) -> f64
 where F: Fn(f64) -> f64 {
     let mut x = x1;
     let mut res = 0.0;
     while x < x2 {
         x += step;
-        res += f(x) * step;
+        res += f(x);
     }
-    res
+    res * step
 }
 
 pub fn trapezoid_method<F>(f: F, x1: f64, x2: f64, step: f64) -> f64
@@ -23,10 +23,10 @@ where F: Fn(f64) -> f64 {
     while x < x2 {
         x += step;
         let current = f(x);
-        res += (previous + current) * step / 2.0;
+        res += previous + current;
         previous = current;
     }
-    res
+    res * step / 2.0
 }
 
 pub fn simpson_method<F>(f: F, x1: f64, x2: f64, n: usize) -> f64
@@ -48,9 +48,7 @@ where F: Fn(f64) -> f64 {
     for _ in 0..n {
         res += f(rng.gen_range(x1..x2));
     }
-    res *= (x2 - x1).abs() / n as f64;
-
-    res
+    res * (x2 - x1).abs() / n as f64
 }
 
 #[cfg(test)]
@@ -61,7 +59,7 @@ mod tests {
 
     #[test]
     fn test_integral_square_method1() {
-        let result = square_method(F, 1.0, 4.0, 1.0);
+        let result = rectangle_method(F, 1.0, 4.0, 1.0);
         assert_eq!(result, 105.0);
     }
     
