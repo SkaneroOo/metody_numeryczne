@@ -55,6 +55,7 @@ mod tests {
     #[test]
     fn test_gaussian_quadrature1() {
         let (xs, ys, expected) = parse_file("data/test_gaussian_quadrature.txt");
+        let expected = expected.unwrap();
         let res = gaussian_quadrature_2d(&xs, &ys);
         println!("Result: {}\t\tExpected: {}\n", res, expected);
         assert_eq!(res, expected);
@@ -63,6 +64,7 @@ mod tests {
     #[test]
     fn test_gaussian_quadrature2() {
         let (xs, ys, expected) = parse_file("data/test_gaussian_quadrature2.txt");
+        let expected = expected.unwrap();
         let res = gaussian_quadrature_2d(&xs, &ys);
         println!("Result: {}\t\tExpected: {}\n", res, expected);
         assert_eq!(res, expected);
@@ -71,6 +73,7 @@ mod tests {
     #[test]
     fn test_gaussian_quadrature3() {
         let (xs, ys, expected) = parse_file("data/test_gaussian_quadrature3.txt");
+        let expected = expected.unwrap();
         let res = gaussian_quadrature_2d(&xs, &ys);
         println!("Result: {}\t\tExpected: {}\n", res, expected);
         assert_eq!(res, expected);

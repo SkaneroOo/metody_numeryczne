@@ -25,6 +25,7 @@ mod tests {
     #[test]
     fn test_lagrange() {
         let (xs, ys, x) = parse_file("data/test_lagrange.txt");
+        let x = x.unwrap();
         let result = lagrange_interpolation(x, &xs, &ys);
         assert_eq!(result, 3.0);
     }

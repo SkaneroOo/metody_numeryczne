@@ -3,6 +3,8 @@ mod utilities;
 
 fn lagrange_printable() {
     let (xs, ys, x) = utilities::parse_file("data/read_test.txt");
+
+    let x = x.unwrap();
     println!("Punkty:");
     for i in 0..xs.len() {
         println!("({}, {})", xs[i], ys[i]);
@@ -11,6 +13,8 @@ fn lagrange_printable() {
     println!("f({}) -> {}", x, result);
     println!();
     let (xs, ys, x) = utilities::parse_file("data/test_lagrange.txt");
+
+    let x = x.unwrap();
     println!("Punkty:");
     for i in 0..xs.len() {
         println!("({}, {})", xs[i], ys[i]);

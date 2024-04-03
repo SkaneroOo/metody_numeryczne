@@ -85,6 +85,7 @@ mod tests {
     #[test]
     fn test_newton1() {
         let (xs, ys, x) = parse_file("data/test_newton.txt");
+        let x = x.unwrap();
         let mut newton = NewtonInterpolation::new(&xs, &ys);
         println!("\nUnknown x, no add{:#?}", newton);
         let result = newton.calculate(x);
@@ -96,6 +97,7 @@ mod tests {
     #[test]
     fn test_newton2() {
         let (mut xs, mut ys, x) = parse_file("data/test_newton.txt");
+        let x = x.unwrap();
         let nx = xs.pop().unwrap();
         let ny = ys.pop().unwrap();
         let mut newton = NewtonInterpolation::new(&xs, &ys);
@@ -110,6 +112,7 @@ mod tests {
     #[test]
     fn test_newton3() {
         let (mut xs, mut ys, x) = parse_file("data/test_newton.txt");
+        let x = x.unwrap();
         let nx = xs.remove(0);
         let ny = ys.remove(0);
         let mut newton = NewtonInterpolation::new(&xs, &ys);
