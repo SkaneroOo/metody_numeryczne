@@ -9,9 +9,9 @@ test *targets:
 qtest *targets:
     @cargo test {{targets}} --lib
 
-push:
+push message=".":
     @git add .
-    @git commit -m .
+    @git commit -m {{message}}
     @git push origin master
 
 pull:

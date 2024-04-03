@@ -3,3 +3,4 @@ mod utilities;
 mod newton;
 mod approximation;
 mod integrals;
+mod gaussianquadrature;
