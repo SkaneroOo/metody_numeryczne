@@ -1,4 +1,4 @@
-#![allow(dead_code)]
+#![allow(clippy::similar_names, clippy::suboptimal_flops, dead_code)]
 #[allow(unused_imports)]
 use super::utilities;
 
@@ -24,6 +24,7 @@ pub fn approximation(xs: &[f64], ys: &[f64]) -> (A0, A1, R) {
         sy2 += ys[i] * ys[i];
     }
 
+    #[allow(clippy::cast_precision_loss)]
     let n = n as f64;
     let s2x = sx * sx;
     let s2y = sy * sy;
@@ -45,7 +46,7 @@ mod tests {
     fn test_approximation1() {
         let (xs, ys, _) = parse_file("data/test_approximation.txt");
         let (a0, a1, r) = approximation(&xs, &ys);
-        println!("\na0: {}\na1: {}\nr: {}\n", a0, a1, r);
+        println!("\na0: {a0}\na1: {a1}\nr: {r}\n");
         assert!((-15.0 - a0).abs() <= 0.001);
         assert!((7.5 - a1).abs() <= 0.001);
     }
@@ -54,7 +55,7 @@ mod tests {
     fn test_approximation2() {
         let (xs, ys, _) = parse_file("data/test_approximation2.txt");
         let (a0, a1, r) = approximation(&xs, &ys);
-        println!("\na0: {}\na1: {}\nr: {}\n", a0, a1, r);
+        println!("\na0: {a0}\na1: {a1}\nr: {r}\n");
         assert!((28.17 - a0).abs() <= 0.005);
         assert!((12.65 - a1).abs() <= 0.005);
     }

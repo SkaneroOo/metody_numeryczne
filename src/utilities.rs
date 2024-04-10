@@ -8,16 +8,13 @@ pub fn parse_file(filename: &str) -> (Vec<f64>, Vec<f64>, Option<f64>) {
     };
     data = data.replace("\r\n", "\n");
     let mut lines = data.lines();
-    let n = match lines.next().unwrap().parse::<f64>() {
-        Ok(n) => Some(n),
-        Err(_) => None
-    };
+    let n = lines.next().unwrap_or_default().parse::<f64>().ok();
     let mut xs = Vec::new();
     let mut ys = Vec::new();
     for line in lines {
         let mut tokens = line.split_whitespace();
-        let x = tokens.next().unwrap().parse::<f64>().unwrap();
-        let y = tokens.next().unwrap().parse::<f64>().unwrap();
+        let x = tokens.next().expect("Invalid file format").parse::<f64>().expect("Invalid file format");
+        let y = tokens.next().expect("Invalid file format").parse::<f64>().expect("Invalid file format");
         xs.push(x);
         ys.push(y);
     }

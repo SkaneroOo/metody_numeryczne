@@ -2,7 +2,11 @@
 #[allow(unused_imports)]
 use super::utilities;
 
-pub fn lagrange_interpolation(x: f64, xs: &[f64], ys: &[f64]) -> f64 {
+pub fn interpolation(x: f64, xs: &[f64], ys: &[f64]) -> Option<f64> {
+    if xs.len() != ys.len() {
+        return None;
+    }
+
     let mut sum = 0.0;
 
     for i in 0..xs.len() {
@@ -14,7 +18,7 @@ pub fn lagrange_interpolation(x: f64, xs: &[f64], ys: &[f64]) -> f64 {
         }
         sum += prod * ys[i];
     }
-    sum
+    Some(sum)
 }
 
 #[cfg(test)]
@@ -25,8 +29,8 @@ mod tests {
     #[test]
     fn test_lagrange() {
         let (xs, ys, x) = parse_file("data/test_lagrange.txt");
-        let x = x.unwrap();
-        let result = lagrange_interpolation(x, &xs, &ys);
-        assert_eq!(result, 3.0);
+        let x = x.expect("No x provided");
+        let result = interpolation(x, &xs, &ys);
+        assert_eq!(result, Some(3.0));
     }
 }

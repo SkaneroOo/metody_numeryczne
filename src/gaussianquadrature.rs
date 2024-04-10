@@ -1,13 +1,15 @@
-#![allow(dead_code)]
+#![allow(clippy::similar_names, clippy::suboptimal_flops, dead_code)]
 #[allow(unused_imports)]
 use super::utilities;
 
 const WEIGHTS: [f64; 2] = [1.0, 1.0];
 
-const POINTS: [f64; 2] = [0.5773502692, -0.5773502692];
+const POINTS: [f64; 2] = [0.577_350_269_2, -0.577_350_269_2];
 
-pub fn gaussian_quadrature_2d(xs: &[f64], ys: &[f64]) -> f64 {
-    assert!(xs.len() == ys.len() && xs.len() == 4);
+pub fn gaussian_quadrature_2d(xs: &[f64], ys: &[f64]) -> Option<f64> {
+    if xs.len() != ys.len() || xs.len() != 4 {
+        return None;
+    }
 
     let mut res = 0.0;
 
@@ -43,7 +45,7 @@ pub fn gaussian_quadrature_2d(xs: &[f64], ys: &[f64]) -> f64 {
         }
     }
 
-    res
+    Some(res)
 }
 
 #[cfg(test)]
@@ -55,27 +57,24 @@ mod tests {
     #[test]
     fn test_gaussian_quadrature1() {
         let (xs, ys, expected) = parse_file("data/test_gaussian_quadrature.txt");
-        let expected = expected.unwrap();
         let res = gaussian_quadrature_2d(&xs, &ys);
-        println!("Result: {}\t\tExpected: {}\n", res, expected);
+        println!("Result: {res:?}\t\tExpected: {expected:?}\n");
         assert_eq!(res, expected);
     }
 
     #[test]
     fn test_gaussian_quadrature2() {
         let (xs, ys, expected) = parse_file("data/test_gaussian_quadrature2.txt");
-        let expected = expected.unwrap();
         let res = gaussian_quadrature_2d(&xs, &ys);
-        println!("Result: {}\t\tExpected: {}\n", res, expected);
+        println!("Result: {res:?}\t\tExpected: {expected:?}\n");
         assert_eq!(res, expected);
     }
 
     #[test]
     fn test_gaussian_quadrature3() {
         let (xs, ys, expected) = parse_file("data/test_gaussian_quadrature3.txt");
-        let expected = expected.unwrap();
         let res = gaussian_quadrature_2d(&xs, &ys);
-        println!("Result: {}\t\tExpected: {}\n", res, expected);
+        println!("Result: {res:?}\t\tExpected: {expected:?}\n");
         assert_eq!(res, expected);
     }
 
