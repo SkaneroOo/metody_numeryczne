@@ -1,4 +1,4 @@
-#![allow(clippy::similar_names, clippy::suboptimal_flops, dead_code)]
+#![allow(clippy::similar_names, dead_code)]
 
 pub static EPS: f64 = 1e-4;
 
