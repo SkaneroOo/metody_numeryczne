@@ -1,6 +1,4 @@
 #![allow(dead_code)]
-#[allow(unused_imports)]
-use super::utilities;
 
 pub fn interpolation(x: f64, xs: &[f64], ys: &[f64]) -> Option<f64> {
     if xs.len() != ys.len() {
@@ -24,7 +22,7 @@ pub fn interpolation(x: f64, xs: &[f64], ys: &[f64]) -> Option<f64> {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use utilities::parse_file;
+    use crate::utilities::parse_file;
 
     #[test]
     fn test_lagrange() {

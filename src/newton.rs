@@ -1,6 +1,4 @@
 #![allow(dead_code)]
-#[allow(unused_imports)]
-use super::utilities;
 use std::fmt;
 
 pub struct Interpolation {
@@ -80,7 +78,7 @@ impl fmt::Debug for Interpolation {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use utilities::parse_file;
+    use crate::utilities::parse_file;
 
     #[test]
     fn test_newton1() {

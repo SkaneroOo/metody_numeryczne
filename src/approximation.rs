@@ -1,6 +1,4 @@
 #![allow(clippy::similar_names, clippy::suboptimal_flops, dead_code)]
-#[allow(unused_imports)]
-use super::utilities;
 
 type A0 = f64;
 type A1 = f64;
@@ -40,7 +38,7 @@ pub fn approximation(xs: &[f64], ys: &[f64]) -> (A0, A1, R) {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use utilities::parse_file;
+    use crate::utilities::parse_file;
 
     #[test]
     fn test_approximation1() {
