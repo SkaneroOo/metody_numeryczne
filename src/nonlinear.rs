@@ -1,6 +1,6 @@
 #![allow(clippy::similar_names, dead_code)]
 
-pub static EPS: f64 = 1e-4;
+pub static EPS: f64 = 1e-6;
 
 pub fn bisection<F>(f: F, x1: f64, x2: f64) -> Option<f64>
 where F: Fn(f64) -> f64 {
