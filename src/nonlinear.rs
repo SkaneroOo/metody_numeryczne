@@ -4,7 +4,7 @@ pub static EPS: f64 = 1e-6;
 
 pub fn bisection<F>(f: F, x1: f64, x2: f64) -> Option<f64>
 where F: Fn(f64) -> f64 {
-    if f(x1) * f(x2) >= 0.0 {
+    if f(x1) * f(x2) > 0.0 {
         return None
     }
 
@@ -41,7 +41,7 @@ where F: Fn(f64) -> f64 {
 
 pub fn newton_raphson<F>(f: F, df: F, x1: f64, x2: f64) -> Option<f64>
 where F: Fn(f64) -> f64 {
-    if f(x1) * f(x2) >= 0.0 {
+    if f(x1) * f(x2) > 0.0 {
         return None
     }
 
@@ -85,28 +85,28 @@ mod tests {
     #[test]
     fn test_nonlinear_bisection1() {
         let res = bisection(F, 0.0, 4.0);
-        println!("Bisection1: {res:#?}");
+        println!("Bisection1: {res:?}");
         assert!(res.is_some());
     }
 
     #[test]
     fn test_nonlinear_bisection2() {
         let res = bisection(F, 0.0, -4.0);
-        println!("Bisection2: {res:#?}");
+        println!("Bisection2: {res:?}");
         assert!(res.is_some());
     }
 
     #[test]
     fn test_nonlinear_newton_raphson1() {
         let res = newton_raphson(F, FP, 0.0, 4.0);
-        println!("Newton-Raphson1: {res:#?}");
+        println!("Newton-Raphson1: {res:?}");
         assert!(res.is_some());
     }
 
     #[test]
     fn test_nonlinear_newton_raphson2() {
         let res = newton_raphson(F, FP, 0.0, -4.0);
-        println!("Newton-Raphson2: {res:#?}");
+        println!("Newton-Raphson2: {res:?}");
         assert!(res.is_some());
     }
 
@@ -116,7 +116,7 @@ mod tests {
     #[test]
     fn test_nonlinear_newton_raphson3() {
         let res = newton_raphson(F2, FP2, -5.0, 5.0);
-        println!("Newton-Raphson3: {res:#?}");
+        println!("Newton-Raphson3: {res:?}");
         assert!(res.is_some());
     }
 }
