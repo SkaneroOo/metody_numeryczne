@@ -5,3 +5,4 @@ mod approximation;
 mod integrals;
 mod gaussianquadrature;
 mod nonlinear;
+mod sole;
