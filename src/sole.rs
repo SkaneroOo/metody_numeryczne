@@ -26,12 +26,6 @@ pub fn gauss(coefficients: Vec<Vec<f64>>, constants: Vec<f64>) -> Option<Vec<f64
             }
             constants[j] -= ratio * constants[i];
         }
-        // println!("[");
-        // for ii in 0..n {
-        //     println!("{:?}", coefficients[ii]);
-        // }
-        // println!("]");
-        // println!("{constants:?}");
     }
 
     for i in (0..n).rev() {
@@ -41,8 +35,6 @@ pub fn gauss(coefficients: Vec<Vec<f64>>, constants: Vec<f64>) -> Option<Vec<f64
         }
         xs[i] = (constants[i] - sum) / coefficients[i][i];
     }
-
-    // println!("{xs:?}");
 
     Some(xs)
 } 
