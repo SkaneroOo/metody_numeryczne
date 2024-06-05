@@ -6,3 +6,4 @@ mod integrals;
 mod gaussianquadrature;
 mod nonlinear;
 mod sole;
+mod euler;

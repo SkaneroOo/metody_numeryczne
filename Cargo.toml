@@ -10,3 +10,6 @@ rand = {version = "0.8.5", default_features = false, features = ["std_rng", "std
 
 [profile.dev]
 opt-level = "s"
+
+[dev-dependencies]
+plotly = "0.8.4"
