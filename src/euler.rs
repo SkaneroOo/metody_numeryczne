@@ -9,7 +9,8 @@ where
 
     for _ in 0..((b - x0) / h).ceil() as usize {
         x += h;
-        ys.push(ys.last().unwrap() + h * f(x, ys[ys.len() - 1]));
+        let y = ys[ys.len() - 1];
+        ys.push(y + h * f(x, y));
     }
 
     // ys.remove(0);
@@ -71,11 +72,11 @@ mod tests {
 
     #[test]
     fn test_euler2() {
-        let f = |x: f64, y: f64| y;
+        let f = |_: f64, y: f64| y;
         let x0 = 0.0;
         let y0 = 1.0;
         let b = 4.0;
-        let h = 0.1;
+        let h = 0.01;
         let ys = euler(f, x0, y0, b, h);
         let mut x = Vec::new();
         x.push(0.0);
@@ -104,7 +105,7 @@ mod tests {
         let x0 = 0.0;
         let y0 = 2.0;
         let b = 12.0;
-        let h = 0.1;
+        let h = 0.01;
         let ys = heun(f, x0, y0, b, h);
         let mut x = Vec::new();
         x.push(0.0);
@@ -143,7 +144,7 @@ mod tests {
         }
         let mut y = Vec::new();
         for i in x.iter() {
-            y.push(i.exp() - i);
+            y.push(-i + 2.0 * i.exp() - 1.0);
         }
         assert!(ys.len() > 0);
         let expected = Scatter::new(x.clone(), y).name("Expected").mode(Mode::Lines);
