@@ -41,9 +41,9 @@ pub fn choleski(coefficients: Vec<Vec<f64>>, constants: Vec<f64>) -> Option<Vec<
         }
     }
 
-    println!("{:?}", l);
+    // println!("{:?}", l);
 
-    println!("{:?}", lt);
+    // println!("{:?}", lt);
 
     let mut ys = vec![0.0; n];
 
@@ -55,9 +55,10 @@ pub fn choleski(coefficients: Vec<Vec<f64>>, constants: Vec<f64>) -> Option<Vec<
         ys[i] = (constants[i] - sum) / l[i][i];
     }
 
-    println!("{:?}", ys);
+    // println!("{:?}", ys);
 
     let mut xs = vec![0.0; n];
+
     for i in (0..n).rev() {
         let mut sum = 0.0;
         for j in i + 1..n {
@@ -66,7 +67,7 @@ pub fn choleski(coefficients: Vec<Vec<f64>>, constants: Vec<f64>) -> Option<Vec<
         xs[i] = (ys[i] - sum) / lt[i][i];
     }
 
-    println!("{:?}", xs);
+    // println!("{:?}", xs);
 
 
     Some(xs)
