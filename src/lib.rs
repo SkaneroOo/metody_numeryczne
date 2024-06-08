@@ -7,3 +7,5 @@ mod gaussianquadrature;
 mod nonlinear;
 mod sole;
 mod euler;
+mod goldenratio;
+mod matrix;
